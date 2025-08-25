@@ -10,7 +10,7 @@ document.getElementById('btn-login').addEventListener('click',function(e){
    const pinNumberValue = parseInt(document.getElementById('pin-value').value) ;
 
    if(mobileNumber===mobileNumberValue && pin===pinNumberValue){
-      window.location.href = '/home.html';
+      window.location.href = '../home.html';
    }
    else{
       alert('Wrong credentials!!');
