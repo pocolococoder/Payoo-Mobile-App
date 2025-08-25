@@ -1,4 +1,4 @@
-const validPin = 1234;
+const validPin = 1234 ;
 
 // add money feature
 
@@ -47,9 +47,9 @@ document.getElementById("add-money-btn").addEventListener("click", function (e) 
 
      const agentNumber = parseInt(document.getElementById('agent-number').value);
 
-    const pinNumber = parseInt(document.getElementById('pin').value)
+    const pinNumber = parseInt(document.getElementById("pin").value);
 
-    if(agentNumber.length !== 11){
+    if(agentNumber.length < 11){
         alert("Please Provide Valid Agent Number")
         return;
     }
@@ -79,6 +79,35 @@ document.getElementById('get-bonus-btn').addEventListener('click',function(e){
    
 });
 
+//Transfer feature
+
+document.getElementById('send-now-btn').addEventListener('click', function(e){
+  e.preventDefault();
+
+  const amount = parseInt(document.getElementById('amount-value').value)
+  const accountNum = parseInt(document.getElementById('account-num').value)
+
+  const available = document.getElementById('available-balance').innerText
+
+  const pinNum = parseInt(document.getElementById('transfer-pin').value);
+
+
+  const transferAmount = available - amount;
+  document.getElementById('available-balance').innerText = transferAmount;
+
+  if(accountNum.length < 11 ){
+        alert("Please Provide Valid Account Number")
+        return;
+    }
+    if(validPin !== pinNum){
+        alert("Please Provide valid Pin");
+        return;
+    }
+
+});
+
+
+
 
   //toggling feature--
 
@@ -86,18 +115,36 @@ document.getElementById('get-bonus-btn').addEventListener('click',function(e){
      document.getElementById("cash-out-parent").style.display = "none";
       document.getElementById('get-bonus-parent').style.display = 'none';
   document.getElementById("add-money-parent").style.display = "block";
+  document.getElementById('transfer-parent').style.display = 'none'
 });
 document
   .getElementById("cash-out-button")
-  .addEventListener("click", function () {
+  .addEventListener("click", function (e) {
     document.getElementById("add-money-parent").style.display = "none";
     document.getElementById("cash-out-parent").style.display = "block";
      document.getElementById('get-bonus-parent').style.display = 'none';
+     document.getElementById('transfer-parent').style.display = 'none'
   });
 
   document.getElementById('get-bonus').addEventListener('click',function(e){
     document.getElementById('add-money-parent').style.display = 'none'
     document.getElementById('cash-out-parent').style.display = 'none';
     document.getElementById('get-bonus-parent').style.display = 'block';
+    document.getElementById('transfer-parent').style.display = 'none'
+  });
+
+  document.getElementById('transfer-money').addEventListener('click',function(e){
+    document.getElementById('add-money-parent').style.display = 'none'
+    document.getElementById('cash-out-parent').style.display = 'none';
+    document.getElementById('get-bonus-parent').style.display = 'none';
+    document.getElementById('transfer-parent').style.display = 'block'
+
+  })
+
+
+  //Logout feature
+
+  document.getElementById('logout-btn').addEventListener('click', function(){
+    window.location.href = '../index.html'
   })
 
